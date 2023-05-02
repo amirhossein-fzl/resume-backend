@@ -3,7 +3,15 @@
     "version": "1.0.0",
     "main": "index.js",
     "license": "GPL",
+    "scripts": {
+        "dev": "nodemon ./src/main.ts",
+        "build": "tsc",
+        "test": "jest"
+    },
     "devDependencies": {
-        "@types/node": "^18.16.3"
+        "@types/node": "^18.16.3",
+        "nodemon": "^2.0.22",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.0.4"
     }
 }

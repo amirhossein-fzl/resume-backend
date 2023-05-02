@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "target": "esnext",
+        "module": "commonjs",
+        "rootDir": "./src",
+        "baseUrl": "./",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": true,
+        "strict": true,
+        "skipLibCheck": true,
+    },
+    "include": [
+        "./src/main.ts"
+    ]
+}

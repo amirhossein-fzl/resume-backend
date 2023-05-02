@@ -4,7 +4,6 @@
         "target": "esnext",
         "module": "commonjs",
         "rootDir": "./src",
-        "baseUrl": "./",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "noImplicitAny": true,
@@ -12,6 +11,6 @@
         "skipLibCheck": true,
     },
     "include": [
-        "./src/main.ts"
+        "./src/**/*.ts"
     ]
 }

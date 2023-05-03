@@ -69,6 +69,24 @@ let index = async (ctx: Context) => {
         return ctx.json({
             messages: validation.get_all_error()
         }, 400);
+    } else {
+        let newline = '%0A';
+        let message = `*New Message*${newline+newline}Name: *${data.name}*${newline}Email: \`${data.email}\`${newline}Phone: \`${data.phone}\`${newline+newline}message: *${data.message}*`;
+        let url = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${process.env.ADMIN_ID}&text=${message}&parse_mode=markdown&disable_web_page_preview=true`;
+
+        let result = await axios.get(url);
+
+        console.log(result.data);
+        
+        if (result.data.ok == true) {
+            return ctx.json({
+                result: true,
+            });
+        } else {
+            return ctx.json({
+                result: false
+            });
+        }
     }
 };
 

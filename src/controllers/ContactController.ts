@@ -41,6 +41,7 @@ let index = async (ctx: Context) => {
         validation.set_error('captcha', 'validation-errors.captcha.required');
     }
 
+
     if (typeof data.name == 'string') {
         validation.run_rule('name', data.name);
     } else {
@@ -75,17 +76,15 @@ let index = async (ctx: Context) => {
         let url = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${process.env.ADMIN_ID}&text=${message}&parse_mode=markdown&disable_web_page_preview=true`;
 
         let result = await axios.get(url);
-
-        console.log(result.data);
         
         if (result.data.ok == true) {
             return ctx.json({
                 result: true,
-            });
+            }, 200);
         } else {
             return ctx.json({
                 result: false
-            });
+            }, 500);
         }
     }
 };

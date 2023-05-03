@@ -2,10 +2,14 @@ import { Hono } from "hono";
 import { serve } from "@hono/node-server";
 import * as dotenv from "dotenv";
 import ContactController from "./controllers/ContactController";
+import { cors } from 'hono/cors';
 
 const app = new Hono();
 dotenv.config();
-// @ts-ignore
+
+app.use('*', cors({
+    origin: '*'
+}))
 app.post('/contact', ContactController.index);
 
 serve({

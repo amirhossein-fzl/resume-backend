@@ -5,7 +5,7 @@ import ContactController from "./controllers/ContactController";
 
 const app = new Hono();
 dotenv.config();
-
+// @ts-ignore
 app.post('/contact', ContactController.index);
 
 serve({

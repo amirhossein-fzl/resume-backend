@@ -1,5 +1,6 @@
 import type { IValidationErrors } from "../types/contact-form";
 import type { IRule } from "../types/validation";
+import axios from "axios";
 
 export class ValidationErrors<T extends keyof IValidationErrors> {
     private _errors: IValidationErrors;
@@ -10,6 +11,7 @@ export class ValidationErrors<T extends keyof IValidationErrors> {
             email: '',
             email_or_phone: '',
             message: '',
+            captcha: ''
         };
 
         this.get_error.bind(this);
@@ -17,6 +19,12 @@ export class ValidationErrors<T extends keyof IValidationErrors> {
 
     public get_error(field: T): string {
         return this._errors[field];
+    }
+
+    public get_all_error() {
+        let errors = Object.entries(this._errors);
+        let filtered_errors = errors.filter(([key, value]) => value.length != 0);
+        return Object.fromEntries(filtered_errors);
     }
 
     public set_error(field: T, message: string): void {
@@ -74,6 +82,18 @@ export default class Validation<T extends keyof IValidationErrors> extends Valid
         }
 
         return false;
+    }
+
+    public async verify_recaptcha(response: string) {
+        let verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${response}`;
+    
+        let result = await axios.get(verificationUrl);
+    
+        if (result.data.success !== undefined && !result.data.success) {
+            return false;
+        }
+    
+        return true;
     }
 
     public add_rule(field: T, method: any, message: string) {

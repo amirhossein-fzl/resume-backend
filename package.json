@@ -18,6 +18,7 @@
     },
     "dependencies": {
         "@hono/node-server": "^0.6.0",
+        "axios": "^1.4.0",
         "dotenv": "^16.0.3",
         "hono": "^3.1.8"
     }

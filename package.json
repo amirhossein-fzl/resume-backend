@@ -1,7 +1,7 @@
 {
     "name": "resume-backend",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "dist/main.js",
     "license": "GPL",
     "scripts": {
         "dev": "nodemon ./src/main.ts",

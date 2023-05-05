@@ -8,7 +8,7 @@ const app = new Hono();
 dotenv.config();
 
 app.use('*', cors({
-    origin: '*'
+    origin: 'https://amirhossein-fzl-dev.ir'
 }))
 app.post('/contact', ContactController.index);
 
